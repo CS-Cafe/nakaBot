@@ -13,7 +13,7 @@ import (
 func main() {
 
 	// Create a new Discord session using the provided bot token.
-	dg, err := discordgo.New("Bot " + "ENTER TOKEN HERE")
+	dg, err := discordgo.New("Bot " + "OTA3NjgwNzcyMTk3MDg5MzIx.YYqtlw.9Vr-5Xs3unL5MdQDqLoKbqSaSkc")
 	if err != nil {
 		fmt.Println("error creating Discord session,", err)
 		return
@@ -54,23 +54,8 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	// If the message is "?" reply with "It is possible!"
 	if m.Content == "?" {
 		nakResponse := "It is possible.\n"
-		switch random := rand.Intn(6); random {
-		case 0:
-			nakResponse += "warm regards"
-		case 1:
-			nakResponse += "take care"
-		case 2:
-			nakResponse += "best"
-		case 3:
-			nakResponse += "sincerely"
-		case 4:
-			nakResponse += "thanks"
-		case 5:
-			nakResponse += "thank you"
-		default:
-			nakResponse += "warm regards"
-		}
-		nakResponse += ",\nNaka"
+		nakArray := [6]string{"warm regards", "take care", "best", "sincerely", "thanks", "thank you"}
+		nakResponse += nakArray[rand.Intn(6)] + ",\nNaka"
 		s.ChannelMessageSend(m.ChannelID, nakResponse)
 	}
 }
