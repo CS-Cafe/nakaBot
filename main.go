@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"os/signal"
 	"syscall"
@@ -52,6 +53,14 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	// If the message is "?" reply with "It is possible!"
 	if m.Content == "?" {
-		s.ChannelMessageSend(m.ChannelID, "It is Possible.")
+		random := rand.Intn(4)
+		switch random {
+		case 0:
+			s.ChannelMessageSend(m.ChannelID, "It is Possible.")
+		case 1:
+			s.ChannelMessageSend(m.ChannelID, "Warm regards")
+		case 2:
+			s.ChannelMessageSend(m.ChannelID, "Take care")
+		}
 	}
 }
