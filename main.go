@@ -53,15 +53,24 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	// If the message is "?" reply with "It is possible!"
 	if m.Content == "?" {
-		switch random := rand.Intn(4); random {
+		nakResponse := "It is possible.\n"
+		switch random := rand.Intn(6); random {
 		case 0:
-			s.ChannelMessageSend(m.ChannelID, "It is possible.")
+			nakResponse += "warm regards"
 		case 1:
-			s.ChannelMessageSend(m.ChannelID, "Warm regards")
+			nakResponse += "take care"
 		case 2:
-			s.ChannelMessageSend(m.ChannelID, "Take care")
+			nakResponse += "best"
+		case 3:
+			nakResponse += "sincerely"
+		case 4:
+			nakResponse += "thanks"
+		case 5:
+			nakResponse += "thank you"
 		default:
-			s.ChannelMessageSend(m.ChannelID, "It is possible")
+			nakResponse += "warm regards"
 		}
+		nakResponse += ",\nNaka"
+		s.ChannelMessageSend(m.ChannelID, nakResponse)
 	}
 }
